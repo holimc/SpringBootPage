@@ -1,0 +1,73 @@
+buildscript{
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    // ext 키워드 : build.gradle에서 사용하는 전역변수를 설정하겠다는 의미다.
+    // 즉, springBootVersion 이라는 전역변수를 생성하고 그 값을 2.1.7.RELEASE로 한다는 뜻이다.
+    repositories {
+        mavenCentral()
+        jcenter()
+        // 22년 2월 1일부터 jcenter는 작동하지 않는다고 한다
+        // mavenCentral() 로 바꿔야 한다고 함. 나중에 수정
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+// 해당 프로젝트 (BootPage)의 플러그인 의존성 관리를 위한 설정이다
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin:  'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+/*
+    plugins {
+        id 'java'
+    }
+*/
+/*
+    plugins{
+        id 'java'
+        id 'eclipse'
+        id 'org.springframework.boot'
+        id 'io.spring.dependency-management'
+    }
+ */
+// apply plugin: 으로 추가하는 부분과 동일한 역할을 하는듯 하다. 기본은 plugins{ id 'java' } 만 있었다.
+
+
+
+group 'com.holimc.sb'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url = "https://repo1.maven.org/maven2/"
+    }
+    maven {
+        url "https://repo.spring.io/release"
+    }
+    maven {
+        url "https://repository.jboss.org/maven2"
+    }
+    maven {
+        url 'https://repo.jenkins-ci.org/public/'
+    }
+    jcenter()
+}
+// 각종 의존성(라이브러리)들을 어떤 원격 저장소(repositories)에서 받을지 정한다
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
