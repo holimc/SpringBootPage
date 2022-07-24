@@ -61,8 +61,18 @@ repositories {
 // 각종 의존성(라이브러리)들을 어떤 원격 저장소(repositories)에서 받을지 정한다
 
 dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    // implementation('org.springframework.boot:spring-boot-starter-web')
+    // testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testCompile(('org.springframework.boot:spring-boot-starter-test'))
+    compile('org.springframework.boot:spring-boot-starter-web')
+    //gradle 버젼에 따라서 complie이 사라지고 implementation이 추가되었다.
+    compile('org.projectlombok:lombok')
+    // 인텔리제이가 버젼업 된 후로, 롬복은 자동으로 내장되어있다.
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    // spring boot용 jpa 추상화 라이브러리, 부트 버젼에 맞춰 jpa 관련 라이브러리 버젼 관리
+    compile('com.h2database:h2')
+    // 인메모리 관계형 데이터 베이스. 별도로 설치할 필요 없이 메모리에서 실행되는 데이터베이스이다.
+
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
