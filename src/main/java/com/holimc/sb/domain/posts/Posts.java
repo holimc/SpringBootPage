@@ -1,4 +1,4 @@
-package com.holimc.sb.domain.post;
+package com.holimc.sb.domain.posts;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -31,9 +31,27 @@ public class Posts {
 
     @Builder
     // 빌더 패턴 클래스를 생성, 생성자의 상단에 생선시 생성자에 포함된 필드만 빌더에 포함
-    public Posts(String title, String content, String Author){
+    public Posts(String title, String content, String author){
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+    /*
+        Entity 클래스에서는 Setter 메소드가 없다.
+        그렇다면 해당 클래스에선 DB에 값을 삽입하기 위해선 기본적으로 생성자를 통해 최종 값을 채운후 DB에 삽입한다.
+        값의 변경이 필요하다면 그때 해당 이벤트에 맞는 퍼블릭 메소드를 호출하여 변경하는걸 전제로 한다.
+
+        그리고 이 외의 방법으로는 @Builder를 통해 제공되는 빌더 클래스를 이용한다.
+        Example.builder()
+            .a(a)
+            .b(b)
+            .build();
+        위의 형식으로 빌더패턴을 사용한다면, 어느 필드에 어느 값이 들어가는지 명확하게 인지하고 쓸 수 있다
+
+     */
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
     }
 }
