@@ -1,10 +1,13 @@
 package com.holimc.sb.domain.posts;
 
+import com.holimc.sb.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
+
 
 @Getter
 // 클래스의 모든 변수에 Getter 메서드를 자동으로 생성
@@ -13,7 +16,7 @@ import javax.persistence.*;
 @Entity
 // 테이블과 링크될 클래스임을 나타내는 어노테이션, 기본값으로 클래스의 카멜케이스 이름을 언더스코어 네이밍으로 테이블과 매칭
 // ex) kakaoLogin -> kakao_login table
-public class Posts {
+public class Posts extends BaseTimeEntity {
     @Id
     // PK(기본키) 필드를 나타냄
     @GeneratedValue(strategy = GenerationType.IDENTITY)

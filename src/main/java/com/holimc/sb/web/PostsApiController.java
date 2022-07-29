@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
+// 생성자를 자동으로 생성해주는 어노테이션.
+// NoArgsConstructor, AllArgsConstructor 등과 다른 점은 final이나 @NonNull 선언이 된 필드값만 받는 생성자를 만들어준다.
 @RestController
 public class PostsApiController {
     private final PostsService postsService;
