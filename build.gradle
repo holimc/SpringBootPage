@@ -72,6 +72,12 @@ dependencies {
     // spring boot용 jpa 추상화 라이브러리, 부트 버젼에 맞춰 jpa 관련 라이브러리 버젼 관리
     compile('com.h2database:h2')
     // 인메모리 관계형 데이터 베이스. 별도로 설치할 필요 없이 메모리에서 실행되는 데이터베이스이다.
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+    // 머스테치 플러그인 스타터 의존성 등록
+    // 기본 위치는 src/main/resources/templates
+    // compile 했는데 어플리케이션에선 돌아가고 테스트에선 안돌아간다
+    // 주석처리(지우면)시 테스트는 돌아가는데 어플리케이션 실행후 로컬호스트로 접근이 안됨
+    testCompile('org.springframework.boot:spring-boot-starter-mustache')
 
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
